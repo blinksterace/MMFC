@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+MMFC/Library
+MMFC/Temp
+MMFC/Obj/
+MMFC/Build/
+MMFC/Builds/
+MMFC/Assests/AssetStoreTools*
+
 # User-specific files
 *.rsuser
 *.suo
