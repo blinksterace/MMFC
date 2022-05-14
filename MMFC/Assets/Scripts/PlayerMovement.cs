@@ -161,11 +161,11 @@ public class PlayerMovement : MonoBehaviour
 
             crouch = true;
         }
-        else if (placeholder.x > 0.0f)
+        else 
         {
             //Rotate to stand
             placeholder = transform.eulerAngles;
-            placeholder.x = placeholder.x - 0.1f;
+            placeholder.x = 0.0f;
             transform.eulerAngles = placeholder;
 
             dodgeSpeed = 15.0f;
