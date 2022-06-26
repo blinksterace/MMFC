@@ -7,6 +7,7 @@ public class WeaponController : MonoBehaviour
     public GameObject Cutlass;
     public bool can_attack;
     public float cooldown = 1.0f;
+    public Collider swordBox;
 
 
 
@@ -33,6 +34,7 @@ public class WeaponController : MonoBehaviour
         can_attack = false;
         Animator attack_anim = Cutlass.GetComponent<Animator>();
         attack_anim.SetTrigger("Melee");
+        LaunchAttack(swordBox);
         StartCoroutine(ResetCooldown());
 
     }
@@ -43,5 +45,10 @@ public class WeaponController : MonoBehaviour
         can_attack = true;
     }
 
+
+    private void LaunchAttack(Collider col)
+    {
+
+    }
 
 }

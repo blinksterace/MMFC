@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Thank you to plai on youtube for the series that halped me develop this!! - Aneesh
+//Thank you to plai on youtube for the series that helped me develop this!! - Aneesh
 public class PlayerMovement : MonoBehaviour
 {
     float playerHeight = 2f;
     float sprint = 1.0f;
     bool coolDown = false;
     public float dodgeTime;
+    
 
     [SerializeField] Transform orientation;
     [SerializeField] Transform cameraPosition;
@@ -219,4 +220,5 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
 }

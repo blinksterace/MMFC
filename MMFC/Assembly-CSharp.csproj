@@ -50,6 +50,8 @@
      <Compile Include="Assets\Scripts\RotationScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\WeaponController.cs" />
+     <Compile Include="Assets\Scripts\HitData.cs" />
+     <Compile Include="Assets\Scripts\CompHitbox.cs" />
      <Compile Include="Assets\Scripts\MoveCamera.cs" />
      <Compile Include="Assets\Scripts\PlayerLook.cs" />
  <Reference Include="UnityEngine">
