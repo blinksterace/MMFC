@@ -12,7 +12,7 @@ public class Test_HitResponder : MonoBehaviour, IHitResponder
 
     private void Start()
     {
-        _hitbox.HitResponder = this;
+        _hitbox.hitResponder = this;
     }
 
     private void Update()

@@ -47,11 +47,15 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Comp_Hurtbox.cs" />
+     <Compile Include="Assets\Scripts\ITargetable.cs" />
      <Compile Include="Assets\Scripts\RotationScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\WeaponController.cs" />
      <Compile Include="Assets\Scripts\HitData.cs" />
-     <Compile Include="Assets\Scripts\CompHitbox.cs" />
+     <Compile Include="Assets\Scripts\Comp_Hitbox.cs" />
+     <Compile Include="Assets\Scripts\Test_HitResponder.cs" />
+     <Compile Include="Assets\Scripts\Comp_Skelly.cs" />
      <Compile Include="Assets\Scripts\MoveCamera.cs" />
      <Compile Include="Assets\Scripts\PlayerLook.cs" />
  <Reference Include="UnityEngine">

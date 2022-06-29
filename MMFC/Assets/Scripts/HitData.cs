@@ -26,29 +26,29 @@ public class HitData
 
 public interface  IHitResponder
 {
-    int Damage { get; }
-    bool CheckHit(HitData data);
-    void Response(HitData data);
+    public int Damage { get; }
+    public bool CheckHit(HitData data);
+    public void Response(HitData data);
 }
 
 public interface IHitDetector
 {
-      IHitResponder hitResponder { get; set; }
-        
+    public IHitResponder hitResponder { get; set; }
+    public void CheckHit();  
 }
 
 public interface IHurtResponder
 {
-    bool CheckHit(HitData data);
+    public bool CheckHit(HitData data);
 
-    void Response(HitData data);
+    public void Response(HitData data);
 }
 
 public interface IHurtBox
 {
-    bool Active { get; }
-     GameObject Owner { get; }
-     Transform Transform { get; }
-     IHurtResponder hurtResponder { get; set; }
-    bool CheckHit(HitData hitData);
+    public bool Active { get; }
+    public GameObject Owner { get; }
+    public Transform Transform { get; }
+    public IHurtResponder hurtResponder { get; set; }
+    public bool CheckHit(HitData hitData);
 }

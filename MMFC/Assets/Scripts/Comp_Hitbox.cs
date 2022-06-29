@@ -8,8 +8,9 @@ public class Comp_Hitbox : MonoBehaviour, IHitDetector
     [SerializeField] private LayerMask m_layerMask;
     private float m_thickness = 0.025f;
     private IHitResponder m_hitResponder;
-    public IHitResponder HitResponder { get => m_hitResponder; set => m_hitResponder = value; }
-
+    
+    public IHitResponder hitResponder { get => m_hitResponder; set => m_hitResponder = value; }
+    
     public void CheckHit()
     {
         Vector3 _scaledSize = new Vector3(
