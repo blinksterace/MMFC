@@ -6,9 +6,10 @@ public class Comp_Hitbox : MonoBehaviour, IHitDetector
 {
     [SerializeField] private BoxCollider m_collider;
     [SerializeField] private LayerMask m_layerMask;
+    [SerializeField] private HurtboxMask m_hurtboxMask = HurtboxMask.Enemy;
     private float m_thickness = 0.025f;
     private IHitResponder m_hitResponder;
-    
+
     public IHitResponder hitResponder { get => m_hitResponder; set => m_hitResponder = value; }
     
     public void CheckHit()
@@ -34,21 +35,24 @@ public class Comp_Hitbox : MonoBehaviour, IHitDetector
             _hurtbox = _hit.collider.GetComponent<IHurtBox>();
             if (_hurtbox != null)
             {
-                if (_hurtbox.Active)
+                if (_hurtbox.Active) // cooldown
                 {
-                    _hitdata = new HitData
+                    if (m_hurtboxMask.HasFlag((HurtboxMask)_hurtbox.Type))
                     {
-                        damage = m_hitResponder == null ? 0 : m_hitResponder.Damage,
-                        hitPoint = _hit.point == Vector3.zero ? _center : _hit.point,
-                        hitNormal = _hit.normal,
-                        hurtbox = _hurtbox,
-                        hitDetector = this,
-                    };
+                        _hitdata = new HitData
+                        {
+                            damage = m_hitResponder == null ? 0 : m_hitResponder.Damage,
+                            hitPoint = _hit.point == Vector3.zero ? _center : _hit.point,
+                            hitNormal = _hit.normal,
+                            hurtbox = _hurtbox,
+                            hitDetector = this,
+                        };
 
-                    if (_hitdata.Validate())
-                    {
-                        _hitdata.hitDetector.hitResponder?.Response(_hitdata);
-                        _hitdata.hurtbox.hurtResponder?.Response(_hitdata);
+                        if (_hitdata.Validate())
+                        {
+                            _hitdata.hitDetector.hitResponder?.Response(_hitdata);
+                            _hitdata.hurtbox.hurtResponder?.Response(_hitdata);
+                        }
                     }
                 }
             }

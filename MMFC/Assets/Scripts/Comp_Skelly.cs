@@ -7,6 +7,7 @@ public class Comp_Skelly : MonoBehaviour, ITargetable, IHurtResponder
     [SerializeField] private bool m_targetable = true;
     [SerializeField] private Transform m_targetTransform;
     [SerializeField] private Rigidbody m_skelly;
+    private int m_health = 100;
 
     private List<Comp_Hurtbox> m_hurtboxes = new List<Comp_Hurtbox>();
 
@@ -26,6 +27,10 @@ public class Comp_Skelly : MonoBehaviour, ITargetable, IHurtResponder
     }
     void IHurtResponder.Response(HitData data)
     {
-        Debug.Log("hurt Response");
+        m_health -= data.damage;
+        Debug.Log(data.damage.ToString());
+
+        if (m_health <= 0)
+            Destroy(this.gameObject);
     }
 }

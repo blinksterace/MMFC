@@ -6,13 +6,16 @@ public class Comp_Hurtbox : MonoBehaviour, IHurtBox
 {
     [SerializeField] private bool m_active = true;
     [SerializeField] private GameObject m_owner = null;
+    [SerializeField] private HurtboxType m_hurtboxType = HurtboxType.Enemy;
     private IHurtResponder m_hurtResponder;
 
-    public bool Active { get => m_active; }
+    public bool Active { get => m_active;  }
 
     public GameObject Owner { get => m_owner; }
     
     public Transform Transform { get => transform; }
+
+    public HurtboxType Type { get => m_hurtboxType; }
 
     public IHurtResponder hurtResponder { get => m_hurtResponder; set => m_hurtResponder = value; } // public?
 

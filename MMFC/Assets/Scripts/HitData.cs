@@ -24,6 +24,20 @@ public class HitData
     }
 }
 
+public enum HurtboxType
+{
+    Player = 1 << 0,
+    Enemy = 1 << 1,
+    Ally = 1 << 2
+}
+[System.Flags]
+public enum HurtboxMask
+{
+    None = 0,
+    Player = 1 << 0,
+    Enemy = 1 << 1,
+    Ally = 1 << 2
+}
 public interface  IHitResponder
 {
     public int Damage { get; }
@@ -49,6 +63,7 @@ public interface IHurtBox
     public bool Active { get; }
     public GameObject Owner { get; }
     public Transform Transform { get; }
+    public HurtboxType Type { get; }
     public IHurtResponder hurtResponder { get; set; }
     public bool CheckHit(HitData hitData);
 }

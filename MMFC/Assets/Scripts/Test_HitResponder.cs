@@ -17,8 +17,14 @@ public class Test_HitResponder : MonoBehaviour, IHitResponder
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+            m_attack = true;
+
         if (m_attack)
+        {
             _hitbox.CheckHit();
+            m_attack = false;
+        }
     }
 
     bool IHitResponder.CheckHit(HitData data)
