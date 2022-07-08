@@ -637,11 +637,20 @@
  <Reference Include="Unity.VisualStudio.Editor">
  <HintPath>C:/Users/Aneesh/Documents/GitHub/MMFC/MMFC/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.Formats.Fbx.Runtime">
+ <HintPath>C:/Users/Aneesh/Documents/GitHub/MMFC/MMFC/Library/ScriptAssemblies/Unity.Formats.Fbx.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="Autodesk.Fbx.Editor">
+ <HintPath>C:/Users/Aneesh/Documents/GitHub/MMFC/MMFC/Library/ScriptAssemblies/Autodesk.Fbx.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Aneesh/Documents/GitHub/MMFC/MMFC/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>C:/Users/Aneesh/Documents/GitHub/MMFC/MMFC/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Formats.Fbx.Editor">
+ <HintPath>C:/Users/Aneesh/Documents/GitHub/MMFC/MMFC/Library/ScriptAssemblies/Unity.Formats.Fbx.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Users/Aneesh/Documents/GitHub/MMFC/MMFC/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
@@ -654,6 +663,9 @@
  </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>C:/Users/Aneesh/Documents/GitHub/MMFC/MMFC/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Autodesk.Fbx">
+ <HintPath>C:/Users/Aneesh/Documents/GitHub/MMFC/MMFC/Library/ScriptAssemblies/Autodesk.Fbx.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Users/Aneesh/Documents/GitHub/MMFC/MMFC/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
