@@ -8,6 +8,8 @@ public class Test_HitResponder : MonoBehaviour, IHitResponder
     [SerializeField] private int m_damage = 10;
     [SerializeField] private Comp_Hitbox _hitbox;
 
+    [SerializeField] private WeaponController cutlass;
+
     int IHitResponder.Damage { get => m_damage; }
 
     private void Start()
@@ -17,14 +19,18 @@ public class Test_HitResponder : MonoBehaviour, IHitResponder
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (cutlass.mouseDown)
             m_attack = true;
 
         if (m_attack)
         {
-            _hitbox.CheckHit();
-            m_attack = false;
+            if(_hitbox.CheckHit())
+            {
+               m_attack = false;
+            }
+            
         }
+        m_attack = false;
     }
 
     bool IHitResponder.CheckHit(HitData data)
@@ -36,4 +42,5 @@ public class Test_HitResponder : MonoBehaviour, IHitResponder
     {
 
     }
+
 }

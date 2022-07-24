@@ -8,6 +8,7 @@ public class WeaponController : MonoBehaviour
     public bool can_attack;
     public float cooldown = 1.0f;
     public Collider swordBox;
+    public bool mouseDown = false;
 
 
 
@@ -20,7 +21,8 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        mouseDown = Input.GetMouseButtonDown(0);
+        if (mouseDown)
         {
             if (can_attack)
             {

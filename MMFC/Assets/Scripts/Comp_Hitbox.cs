@@ -12,7 +12,7 @@ public class Comp_Hitbox : MonoBehaviour, IHitDetector
 
     public IHitResponder hitResponder { get => m_hitResponder; set => m_hitResponder = value; }
     
-    public void CheckHit()
+    public bool CheckHit()
     {
         Vector3 _scaledSize = new Vector3(
             m_collider.size.x * transform.lossyScale.x,
@@ -53,9 +53,12 @@ public class Comp_Hitbox : MonoBehaviour, IHitDetector
                             _hitdata.hitDetector.hitResponder?.Response(_hitdata);
                             _hitdata.hurtbox.hurtResponder?.Response(_hitdata);
                         }
+
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 }

@@ -48,7 +48,7 @@ public interface  IHitResponder
 public interface IHitDetector
 {
     public IHitResponder hitResponder { get; set; }
-    public void CheckHit();  
+    public bool CheckHit();  
 }
 
 public interface IHurtResponder
