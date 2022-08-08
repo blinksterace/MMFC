@@ -51,10 +51,13 @@ public class Comp_Hitbox : MonoBehaviour, IHitDetector
                         if (_hitdata.Validate())
                         {
                             _hitdata.hitDetector.hitResponder?.Response(_hitdata);
+                            // Damage is taken here
+                            _hitdata.hurtbox.hurtResponder?.SetDamage(_hitdata);
                             _hitdata.hurtbox.hurtResponder?.Response(_hitdata);
+                            return true;
                         }
 
-                        return true;
+                        // return true;
                     }
                 }
             }

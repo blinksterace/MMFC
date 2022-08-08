@@ -53,9 +53,13 @@ public interface IHitDetector
 
 public interface IHurtResponder
 {
+    public int Damage { get; }
+
     public bool CheckHit(HitData data);
 
     public void Response(HitData data);
+
+    public void SetDamage(HitData data);
 }
 
 public interface IHurtBox

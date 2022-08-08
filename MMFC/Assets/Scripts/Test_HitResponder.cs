@@ -24,6 +24,7 @@ public class Test_HitResponder : MonoBehaviour, IHitResponder
 
         if (m_attack)
         {
+            // Need a cooldown for check hit bc attack dmg is done there, must have same cooldown as animation
             if(_hitbox.CheckHit())
             {
                m_attack = false;
