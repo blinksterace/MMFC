@@ -64,4 +64,19 @@ public class Comp_Hitbox : MonoBehaviour, IHitDetector
         }
         return false;
     }
+
+
+    public Comp_Hitbox(BoxCollider m_collider, LayerMask m_layerMask, HurtboxMask m_hurtboxMask, float m_thickness, IHitResponder m_hitResponder)
+    {
+        this.m_collider = m_collider;
+        this.m_layerMask = m_layerMask;
+        this.m_hurtboxMask = m_hurtboxMask;
+        this.m_thickness = m_thickness;
+        this.m_hitResponder = m_hitResponder;
+    }
+
+    public Comp_Hitbox DeepCopy()
+    {
+        return new Comp_Hitbox(this.m_collider, this.m_layerMask, this.m_hurtboxMask, this.m_thickness, this.m_hitResponder);
+    }
 }

@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 //Thank you to plai on youtube for the series that helped me develop this!! - Aneesh
 public class PlayerMovement : MonoBehaviour
 {
     float playerHeight = 2f;
     float sprint = 1.0f;
-    bool coolDown = false;
-    public float dodgeTime;
+    bool issprint = false;
+
+    public float dodgeTime = .5f;
     
 
     [SerializeField] Transform orientation;
@@ -39,6 +41,15 @@ public class PlayerMovement : MonoBehaviour
 
     float dodgeSpeed;
     
+    [Header("Stamina Management")]
+    [SerializeField] float stamina = 100.00f;
+    [SerializeField] float maxStamina = 100.00f;
+    [SerializeField] float staminadelay = 2f;
+
+    [Header("UI")]
+    public Image staminaBar;
+
+    float lerpspeed;
 
     Vector3 moveDirection;
     Vector3 slopeMoveDirection;
@@ -63,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
-
     private void Start()
     {
         dodgeSpeed = 15.0f;
@@ -81,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(jumpKey) && isGrounded && !crouch)
         {
+            print("JUMP Method Called");
             Jump();
         }
 
@@ -90,9 +101,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown("left shift") && !(Input.GetKey("w")) && !coolDown)
+        if (Input.GetKeyDown("left shift") && !(Input.GetKey("w")) && stamina >= 25)
+        {
+            stamina -= 25;
             Dodge();
-
+            if (resetStaminaCoroutine == null)
+        {    
+            resetStaminaCoroutine = StartCoroutine(ResetStamina());
+        }
+         else if (resetStaminaCoroutine != null)
+        {
+            StopCoroutine(resetStaminaCoroutine);
+            resetStaminaCoroutine = null;
+        }
+        }
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
     }
 
@@ -108,31 +130,26 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
-
+ 
     void Dodge()
     {
+        staminaBar.fillAmount = stamina / maxStamina;
         if ((Input.GetKey("a")))
         {
             print("Dodging Left " + dodgeSpeed);
             rb.AddForce(-transform.right * dodgeSpeed, ForceMode.Impulse);
-
-            coolDown = true;
             Invoke("ResetCoolDown", dodgeTime);
         }
         else if ((Input.GetKey("d")))
         {
             print("Dodging Right " + dodgeSpeed);
             rb.AddForce(transform.right * dodgeSpeed, ForceMode.Impulse);
-
-            coolDown = true;
             Invoke("ResetCoolDown", dodgeTime);
         }
         else if ((Input.GetKey("s") && !crouch))
         {
             print("Dodging Back " + dodgeSpeed);
             rb.AddForce(-transform.forward * dodgeSpeed, ForceMode.Impulse);
-
-            coolDown = true;
             Invoke("ResetCoolDown", dodgeTime);
         }
     }
@@ -176,25 +193,63 @@ public class PlayerMovement : MonoBehaviour
        
     }
 
+private Coroutine resetStaminaCoroutine;
+
     private void FixedUpdate()
     {
         MovePlayer();
+        
+        //print("Stamina: " + stamina);
+        if (!issprint && resetStaminaCoroutine == null)
+        {    
+            resetStaminaCoroutine = StartCoroutine(ResetStamina());
+        }
+         else if (issprint && resetStaminaCoroutine != null)
+        {
+            StopCoroutine(resetStaminaCoroutine);
+            resetStaminaCoroutine = null;
+        }
+    
+    }
+    
+    IEnumerator ResetStamina()
+    {
+        float duration = 3.0f; // duration of increase
+        float normalizedTime = 0;
+        float startStamina = stamina;
+        yield return new WaitForSeconds(staminadelay);
+        while (normalizedTime <= 1f)
+        {
+            normalizedTime += Time.deltaTime / duration;
+            stamina = Mathf.Lerp(startStamina, 100, normalizedTime);
+            staminaBar.fillAmount = stamina / maxStamina;
+            yield return null;
+        }
+        resetStaminaCoroutine = null;
     }
 
-    void ResetCoolDown()
-    {
-        coolDown = false;
-    }
+    
+        
 
     void MovePlayer()
     {   
-        if (Input.GetKey("left shift") && Input.GetKey("w") && !(Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")) && !crouch)
+        if (Input.GetKey("left shift") && Input.GetKey("w") && !(Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")) && !crouch && stamina >= 0)
         {
-            print("Sprinting");
-            sprint = 1.5f;
+                issprint = true;
+                stamina -= .5f;
+                sprint = 1.6f;
+            if(stamina < 0)
+            {
+                stamina = 0;
+            }
+            staminaBar.fillAmount = stamina / maxStamina;
+            
         }
         else
+        {
+            issprint = false;
             sprint = 1.0f;
+        }    
 
         if (isGrounded && !OnSlope())
         {
@@ -210,5 +265,5 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-
+    
 }

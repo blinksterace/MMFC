@@ -48,7 +48,10 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Comp_Hurtbox.cs" />
+     <Compile Include="Assets\Scripts\Gun.cs" />
+     <Compile Include="Assets\Scripts\MovementAI.cs" />
      <Compile Include="Assets\Scripts\ITargetable.cs" />
+     <Compile Include="Assets\Scripts\SkeleTarget.cs" />
      <Compile Include="Assets\Scripts\RotationScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\WeaponController.cs" />

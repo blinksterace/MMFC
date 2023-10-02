@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour, IHurtResponder
+public class WeaponController : MonoBehaviour
 {
     public GameObject Cutlass;
+    private bool downAndAttack = false;
     public bool can_attack;
-    public float cooldown = 1.0f;
+    public float cooldown = 0.72f;
     public Collider swordBox;
     public bool mouseDown = false;
     [SerializeField] private GameObject bloodps = null;
-    int damage = 0;
-    int IHurtResponder.Damage { get => damage; }
+     public float attackRange = 3f;
+    public float attackDelay = 0.4f;
+    public float attackDamage = 10f;
+    public LayerMask attackLayer;
+    public Camera fpsCam;
+
+
 
 
 
@@ -25,14 +31,14 @@ public class WeaponController : MonoBehaviour, IHurtResponder
     void Update()
     {
         // Debug.Log("can_attack: " + can_attack);
-        mouseDown = Input.GetMouseButtonDown(0);
-        if (mouseDown)
+        downAndAttack = Input.GetMouseButtonDown(1) && can_attack;
+        if (downAndAttack)
         {
-            if (can_attack)
-            {
-                CutlassSwing();
-            }
+            CutlassSwing();
         }
+
+        if(downAndAttack == true)
+            Debug.Log(downAndAttack);
     }
 
     public void CutlassSwing()
@@ -43,14 +49,26 @@ public class WeaponController : MonoBehaviour, IHurtResponder
         // Animation
         Animator attack_anim = Cutlass.GetComponent<Animator>();
         attack_anim.SetTrigger("Melee");
-
-        // ??
+        Invoke(nameof(AttackRaycast), attackDelay);
         
-        // LaunchAttack(swordBox);
-
         // Cooldown
         StartCoroutine(ResetCooldown());
 
+    }
+
+    void AttackRaycast()
+    {
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out RaycastHit hit, attackRange, attackLayer))
+        {
+            Debug.Log(hit.transform.name);
+
+            SkeleTarget target = hit.transform.GetComponent<SkeleTarget>();
+            if (target != null)
+            {
+                target.TakeDamage(attackDamage);
+                Debug.Log("damage taken");
+            }
+        }
     }
 
     IEnumerator ResetCooldown()
@@ -65,30 +83,23 @@ public class WeaponController : MonoBehaviour, IHurtResponder
 
     }
 
-    bool IHurtResponder.CheckHit(HitData data)
-    {
-        return true;
-    }
-    void IHurtResponder.Response(HitData data)
-    {
-        // 
-    }
-    void IHurtResponder.SetDamage(HitData data)
-    {
-        damage = data.damage;
-    }
+    
 
     // Might need OnCollisionEnter instead...
     private void OnTriggerEnter(Collider other)
     {
         if (can_attack)
         {
-            // Debug.Log("Damage taken");
+             Debug.Log("Damage taken");
 
-            //Instantiate(bloodps, other.gameObject.GetComponent<Comp_Skelly>().data.hitPoint, Quaternion.FromToRotation(Vector3.up, other.gameObject.GetComponent<Comp_Skelly>().GetDamage()));
-            // Debug.Log(data.damage.ToString());
+           
 
         }
+    }
+
+    public bool getDownAndAttack()
+    {
+        return downAndAttack;
     }
 
 }
