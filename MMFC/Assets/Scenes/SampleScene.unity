@@ -6988,25 +6988,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 24
   m_Mesh: {fileID: 4300000, guid: ee789e7286a65894c882af3d22b75b76, type: 3}
---- !u!1 &898481591 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 172452, guid: aa8432d52325aa74685b2677529486b6, type: 3}
-  m_PrefabInstance: {fileID: 98138915}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &898481592
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898481591}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 4300000, guid: c30c27f7de8c4ac4bafe75aa186721bd, type: 3}
 --- !u!33 &948176141
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7697,6 +7678,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1724425978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 177418, guid: f8ca1af5413cfec47ab975dd7f75ee74, type: 3}
+  m_PrefabInstance: {fileID: 433408517}
+  m_PrefabAsset: {fileID: 0}
+--- !u!154 &1724425982
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724425978}
+  m_Material: {fileID: 0}
+  m_Enabled: 1
+  m_TerrainData: {fileID: 0}
+  m_EnableTreeColliders: 1
 --- !u!1 &1745175801
 GameObject:
   m_ObjectHideFlags: 0
